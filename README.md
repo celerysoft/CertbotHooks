@@ -20,6 +20,13 @@ cmd变量要改成自己服务器环境所对应的
 
 如果启动有问题，也可以指定一下PYTHONPATH
 
+### 为authenticator.sh和cleanup.sh添加执行权限
+
+```
+chmod 744 authenticator.sh
+chmod 744 cleanup.sh
+```
+
 ## 执行
 
 将脚本目录和通配符证书域名名称改成你自己的
