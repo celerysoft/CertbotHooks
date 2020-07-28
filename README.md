@@ -14,6 +14,14 @@
 pip install -r requirements.txt
 ```
 
+### 修改配置
+
+```
+vim configs.py
+```
+
+将阿里云的ACCESS_KEY_ID和SECRET填上
+
 ### 修改hook脚本authenticator.sh和cleanup.sh
 
 cmd变量要改成自己服务器环境所对应的
@@ -60,6 +68,10 @@ crontab -e
 0 6 */7 * * root certbot-auto renew --no-self-upgrade --agree-tos --manual --deploy-hook "service nginx restart" --manual-auth-hook "/脚本目录/authenticator.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" --server https://acme-v02.api.letsencrypt.org/directory
 
 ```
+
+如果你同时想更新一下七牛的证书，可以看看这个项目：
+
+[https://github.com/celerysoft/QiniuCloudSDK](https://github.com/celerysoft/QiniuCloudSDK)
 
 ## License
 
