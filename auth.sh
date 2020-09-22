@@ -26,6 +26,6 @@ fi
 export PYTHONPATH
 
 # 可能需要修改一下 cmd，如果没使用虚拟环境的话，或者虚拟环境不在当前目录下
-cmd="${PATH}/venv/bin/python ${PATH}/authenticator.py"
+cmd="${PATH}/venv/bin/python ${PATH}/auth.py"
 
 $cmd $CERTBOT_DOMAIN "_acme-challenge" $CERTBOT_VALIDATION
