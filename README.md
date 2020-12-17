@@ -66,6 +66,26 @@ crontab -e
 
 [https://github.com/celerysoft/QiniuCloudSDK](https://github.com/celerysoft/QiniuCloudSDK)
 
+## 附录
+
+### Certbot 控制台选项简介
+
+[官方文档](https://certbot.eff.org/docs/using.html#certbot-command-line-options)
+
+ * certonly 申请或更新证书，但是不安装（自动更新nginx配置文件）
+ * renew 更新所有之前申请的、即将过期的证书
+ * --no-self-upgrade 阻止Certbot自动更新
+ * --agree-tos 同意用户协议
+ * --manual-public-ip-logging-ok 同意记录当前ip地址
+ * --keep-until-expiring 如果证书存在，则只在证书快过期时才执行更新操作
+ * --force-renewal 如果证书存在，无论它离过期时间还有多久，都立即更新它
+ * --manual 
+ * --manual-auth-hook
+ * --manual-cleanup-hook
+ * --deploy-hook
+ * -d 需要申请证书的域名，可以使用逗号分隔来一次性指定多个域名
+ * --server ACME Directory Resource URI
+
 ## License
 
 [Apache License 2.0](./LICENSE)
