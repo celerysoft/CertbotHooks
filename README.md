@@ -41,7 +41,7 @@ chmod 744 deploy.sh
 将脚本目录和通配符证书域名名称改成你自己的
 
 ```
-certbot-auto certonly --no-self-upgrade --agree-tos --manual --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
+certbot-auto certonly --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --manual --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
 ```
 
 ## 定时执行
@@ -54,9 +54,9 @@ crontab -e
 
 ```
 # 更新单个证书
-0 6 */7 * * root certbot-auto certonly --no-self-upgrade --agree-tos --manual --deploy-hook "/脚本目录/deploy.sh" --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
+0 6 */7 * * root certbot-auto certonly --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --manual --deploy-hook "/脚本目录/deploy.sh" --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
 # 更新所有证书
-0 6 */7 * * root certbot-auto renew --no-self-upgrade --agree-tos --manual --deploy-hook "/脚本目录/deploy.sh" --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" --server https://acme-v02.api.letsencrypt.org/directory
+0 6 */7 * * root certbot-auto renew --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --manual --deploy-hook "/脚本目录/deploy.sh" --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" --server https://acme-v02.api.letsencrypt.org/directory
 ```
 
 如果想在更新完证书之后重启一下Nginx，需要编辑一下`deploy.sh`文件，将重启Nginx的命令添加进deploy.sh
