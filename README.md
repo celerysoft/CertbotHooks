@@ -22,13 +22,13 @@ vim configs.py
 
 将阿里云的ACCESS_KEY_ID和SECRET填上
 
-### 修改hook脚本auth.sh和cleanup.sh
+### 修改hook脚本auth.sh, cleanup.sh和deploy.sh
 
 cmd变量要改成自己服务器环境所对应的
 
 如果启动有问题，也可以指定一下PYTHONPATH
 
-### 为auth.sh和cleanup.sh添加执行权限
+### 为auth.sh, cleanup.sh和deploy.sh添加执行权限
 
 ```
 chmod 744 auth.sh
@@ -41,7 +41,7 @@ chmod 744 deploy.sh
 将脚本目录和通配符证书域名名称改成你自己的
 
 ```
-certbot-auto certonly --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --manual --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
+certbot-auto certonly --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --keep-until-expiring --manual --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
 ```
 
 ## 定时执行
@@ -54,9 +54,9 @@ crontab -e
 
 ```
 # 更新单个证书
-0 6 */7 * * root certbot-auto certonly --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --manual --deploy-hook "/脚本目录/deploy.sh" --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
+0 6 */7 * * root certbot-auto certonly --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --keep-until-expiring --manual --deploy-hook "/脚本目录/deploy.sh" --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
 # 更新所有证书
-0 6 */7 * * root certbot-auto renew --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --manual --deploy-hook "/脚本目录/deploy.sh" --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" --server https://acme-v02.api.letsencrypt.org/directory
+0 6 */7 * * root certbot-auto renew --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --keep-until-expiring --manual --deploy-hook "/脚本目录/deploy.sh" --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" --server https://acme-v02.api.letsencrypt.org/directory
 ```
 
 如果想在更新完证书之后重启一下Nginx，需要编辑一下`deploy.sh`文件，将重启Nginx的命令添加进deploy.sh
