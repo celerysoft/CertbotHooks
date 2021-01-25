@@ -41,7 +41,7 @@ chmod 744 deploy.sh
 将脚本目录和通配符证书域名名称改成你自己的
 
 ```
-certbot-auto certonly --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --keep-until-expiring --manual --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
+certbot-auto certonly --no-self-upgrade --agree-tos --manual-public-ip-logging-ok --keep-until-expiring --manual --deploy-hook "/脚本目录/deploy.sh" --manual-auth-hook "/脚本目录/auth.sh" --manual-cleanup-hook "/脚本目录/cleanup.sh" -d "*.celerysoft.com暨通配符证书域名名称" --server https://acme-v02.api.letsencrypt.org/directory
 ```
 
 ## 定时执行
